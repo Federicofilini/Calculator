@@ -1,0 +1,292 @@
+@font-face {
+  font-family: "Num", Arial, Helvetica, sans-serif;
+  src: url("./font/NesobriteScLt\ Regular.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Trireme", Arial, Helvetica, sans-serif;
+  src: url(./font/Cross\ Regular\ ttstd.ttf);
+  font-weight: 600;
+}
+
+body {
+  padding-top: 10px;
+}
+.calc {
+  position: relative;
+  margin: 0 auto;
+  width: 650px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 10px 50px;
+  border-radius: 20px;
+  background-color: rgb(251, 229, 156);
+  box-shadow: inset 0 4px 6px rgba(255, 255, 255, 0.5),
+    /* верхний внутренний блик */ inset 0 -3px 4px rgba(200, 200, 200, 0.3),
+    /* нижняя внутренняя тень */ 0 8px 20px rgba(150, 150, 150, 0.3); /* внешняя тень для глубины */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.radiator {
+  position: absolute;
+  top: 0;
+  display: flex;
+  gap: 10px;
+  padding: 0 5px;
+  box-shadow: inset 2px -2px 4px rgb(73, 59, 13);
+  border-radius: 0px 0px 10px 10px;
+  overflow: hidden;
+}
+.hole {
+  width: 7px;
+  height: 25px;
+  background-color: #000000;
+  box-shadow: inset 0 0px 2px rgb(25, 21, 21);
+}
+.calc-display {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 50px;
+  width: 440px;
+  height: 120px;
+  border-radius: 5px;
+  margin-bottom: 50px;
+  background-color: rgb(31, 36, 35);
+  box-shadow: inset 0 0 5px #02430f, inset 0 0 10px #05f7bb,
+    inset 0 0 20px #b2e5f6;
+
+  background: linear-gradient(
+    to right,
+    #000000,
+    #1a1a1a 50%,
+    #333333 60%,
+    #000000 90%
+  );
+}
+.display-wrapper {
+  position: relative;
+  width: 493px;
+  padding: 30px 30px 0px;
+  border: 4px solid rgb(247, 223, 147);
+  margin-bottom: 20px;
+  box-shadow: inset 0 0 40px rgb(213, 184, 87);
+}
+.line {
+  position: absolute;
+  width: 3px;
+  height: 44px;
+  box-shadow: 0 0 10px rgb(213, 184, 87);
+}
+.line-one {
+  top: 0;
+  left: 0;
+  transform: rotate(-43deg);
+  transform-origin: top;
+}
+.line-two {
+  top: 0;
+  right: 0;
+  transform: rotate(44deg);
+  transform-origin: top;
+}
+.line-three {
+  height: 62px;
+  bottom: 0;
+  left: 0;
+  transform: rotate(32deg);
+  transform-origin: bottom;
+}
+.line-four {
+  height: 62px;
+  bottom: 0;
+  right: 0;
+  transform: rotate(-32deg);
+  transform-origin: bottom;
+}
+
+.calc-wrapper {
+  box-shadow: inset 0 0 2px rgb(205, 185, 120);
+  padding: 30px;
+  border: 4px solid rgb(247, 223, 147);
+  box-shadow: inset 0 0 10px rgb(196, 155, 35);
+}
+
+.final-num {
+  width: 82%;
+  color: #10ffb7eb;
+  text-shadow: 0 0 2px #0c93c4, 0 0 3px #00ff00, 0 0 4px #5da7fb,
+    0 0 5px #00ff00, 0 0 80px #c0f7f1;
+  text-align: end;
+  font-size: 40px;
+  letter-spacing: 0.2em;
+  font-family: "ZCOOL QingKe HuangYou";
+  overflow: hidden;
+  user-select: none;
+}
+.buttons-aria {
+  display: flex;
+  margin-bottom: 15px;
+  gap: 4px;
+}
+.top-buttons-aria {
+  width: 472px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.top-battons_zone {
+  display: flex;
+  gap: 4px;
+}
+.buttons-aria_swich {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+.buttons-aria_swich span {
+  position: absolute;
+  text-align: center;
+  width: 166px;
+  padding: 2px;
+  top: -23px;
+  right: 0px;
+  color: rgb(251, 229, 156);
+  text-shadow: 0 0 5px rgb(205, 185, 120);
+  box-shadow: inset 0 0 2px rgb(205, 185, 120);
+  border: 2px solid rgb(247, 223, 147);
+}
+.swich-btn-box {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 70px;
+  height: 40px;
+  box-shadow: inset 0 0 5px rgb(205, 185, 120);
+  border: 4px solid rgb(247, 223, 147);
+}
+.swich-btn-box input {
+  display: none;
+}
+.swich-btn {
+  position: relative;
+  width: 45px;
+  height: 10px;
+  margin-bottom: 5px;
+  background-color: #0f0d0d;
+  background: linear-gradient(to bottom, #4e4d4d, #3d3c3c);
+  box-shadow: inset 0 0px 2px rgb(0, 0, 0), 0 0px 2px rgb(42, 41, 41);
+
+  cursor: pointer;
+}
+
+.swich-btn::after {
+  position: absolute;
+  content: "";
+  top: 1px;
+  left: 2px;
+  width: 15px;
+  height: 8px;
+  background-color: #000000;
+  box-shadow: inset 0 0px 2px rgb(25, 21, 21);
+  background: linear-gradient(
+    to right,
+    #000000,
+    /* глубокий чёрный слева */ #1a1a1a 25%,
+    /* тёмно-серый для создания глубины */ rgb(251, 229, 156) 30%,
+    rgb(251, 229, 156) 32%,
+    /* первый блик */ #1a1a1a 35%,
+    #1a1a1a 45%,
+    rgb(251, 229, 156) 50%,
+    rgb(251, 229, 156) 52%,
+    /* второй блик */ #1a1a1a 55%,
+    #1a1a1a 65%,
+    rgb(251, 229, 156) 70%,
+    rgb(251, 229, 156) 72%,
+    /* третий блик */ #1a1a1a 75%,
+    #000000 100% /* глубокий чёрный справа */
+  );
+  transition: transform 0.2s;
+}
+
+input[type="checkbox"]:checked + .swich-btn::after {
+  transform: translateX(26px);
+}
+
+.buttons-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 4px;
+  margin-right: 15px;
+}
+.buttons-middle-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-right: 15px;
+  column-gap: 4px;
+  row-gap: 4px;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 3px;
+  color: rgb(251, 229, 156);
+  text-shadow: 0 0 1px rgb(251, 229, 156);
+  background-color: #0f0d0d;
+  background: linear-gradient(to bottom, #4e4d4d, #3d3c3c);
+  box-shadow: 0px 0px 15px rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+.btn-equals {
+  width: 124px;
+  grid-column: span 2;
+}
+.btn-equals_span {
+  width: 100px;
+}
+.btn:hover {
+  opacity: 0.98;
+}
+.btn:active {
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.7);
+  transform: translateY(2px);
+  transform: scale(0.99);
+}
+.btn span {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  height: 75%;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgb(0, 0, 0);
+  box-shadow: inset 0 0px 8px rgb(30, 30, 30);
+}
+.btn span:active {
+  transform: scale(0.99);
+}
+.btn-equals_span {
+  width: 100px;
+}
+.btn-clean {
+  background: linear-gradient(to bottom, rgb(255, 12, 12), rgb(251, 33, 33));
+  background-color: rgb(173, 37, 37);
+}
+.btn-clean-span {
+  background-color: rgb(239, 61, 61);
+  box-shadow: inset 0 0 2px rgb(224, 102, 102);
+  background: linear-gradient(to bottom, rgb(254, 53, 53), rgb(199, 9, 9));
+}

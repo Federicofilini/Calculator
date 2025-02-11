@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сalculator</title>
+    <link rel="icon" href="./favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./calc.js" />
+  </head>
+  <body>
+    <div class="calc">
+      <div class="radiator">
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+        <div class="hole"></div>
+      </div>
+      <div class="display-wrapper">
+        <span class="line line-one"></span>
+        <span class="line line-two"></span><span class="line line-three"></span
+        ><span class="line line-four"></span>
+        <div class="calc-display">
+          <span class="final-num" id="display">0</span>
+          <div class="calc-display_cover"></div>
+        </div>
+      </div>
+      <div class="calc-wrapper">
+        <div class="top-buttons-aria">
+          <div class="top-battons_zone aria">
+            <button type="button" class="btn"><span>←→</span></button
+            ><button type="button" class="btn calcBtn"><span>%</span></button
+            ><button type="button" class="btn calcBtn"><span>√</span></button
+            ><button type="button" class="btn"><span>1/X</span></button>
+          </div>
+          <div class="buttons-aria_swich">
+            <span>Электроника МК-4</span>
+
+            <div class="swich-btn-box">
+              <input type="checkbox" id="swich-btn" />
+              <label class="swich-btn" for="swich-btn"></label>
+            </div>
+
+            <div class="swich-btn-box">
+              <input type="checkbox" id="swich-btn-two" />
+              <label class="swich-btn" for="swich-btn-two"></label>
+            </div>
+          </div>
+        </div>
+        <div class="buttons-aria aria">
+          <div class="buttons-section">
+            <button type="button" class="btn">
+              <span class="calcBtn">СП-1</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">СП-2</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">П1-</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">П2-</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">П1+</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">П2+</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">ХП</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">ПХ</span>
+            </button>
+          </div>
+          <div class="buttons-middle-section aria">
+            <button type="button" class="btn">
+              <span class="calcBtn">7</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">8</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">9</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">4</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">5</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">6</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">1</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">2</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">3</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">0</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">,</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">/-/</span>
+            </button>
+          </div>
+          <div class="buttons-section aria">
+            <button type="button" class="btn btn-clean">
+              <span class="btn-clean-span calcBtn" id="clearDisplay">C</span>
+            </button>
+            <button type="button" class="btn"><span>CK</span></button>
+            <button type="button" class="btn">
+              <span class="calcBtn">-</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">÷</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">+</span>
+            </button>
+            <button type="button" class="btn">
+              <span class="calcBtn">×</span>
+            </button>
+            <button type="button" class="btn btn-equals">
+              <span class="btn-equals_span calcBtn" >=</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let calcDisplay = document.getElementById("display");
+      let checkboxOne = document.getElementById("swich-btn");
+      checkboxOne.addEventListener("change", () => {
+        if (checkboxOne.checked) {
+          calcDisplay.style.fontFamily = "Trireme";
+        } else {
+          calcDisplay.style.fontFamily = "ZCOOL QingKe HuangYou";
+        }
+      });
+    </script>
+    <script>
+      let swichBtnTwo = document.getElementById("swich-btn-two");
+      swichBtnTwo.addEventListener("change", () => {
+        if (swichBtnTwo.checked) {
+          calcDisplay.style.fontSize = "30px";
+        } else {
+          calcDisplay.style.fontSize = "40px";
+        }
+      });
+    </script>
+    <script>
+      
+      var a = "";
+      var b = "";
+      var sign = "";
+      var finish = false;
+    
+      
+      const digit = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ","];
+      const action = ["-", "+", "÷", "×", "%", "√"];
+    
+      
+      const display = document.getElementById("display");
+    
+      // Функция очистки (кнопка "C")
+      function clearAll() {
+        a = "";
+        b = "";
+        sign = "";
+        finish = false;
+        display.textContent = 0;
+        console.log("Очистка: a =", a, "b =", b, "sign =", sign);
+      }
+      // Привязываем кнопку очистки (предполагается, что у неё id="clearDisplay")
+      document.getElementById("clearDisplay").onclick = clearAll;
+    
+      // Обработчик кликов для всех элементов с классом "calcBtn"
+      document.querySelectorAll(".calcBtn").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          const key = event.target.textContent;
+          console.log("Нажата кнопка:", key);
+    
+          // Если нажата цифра (или запятая)
+          if (digit.includes(key)) {
+            if (sign === "") {
+              // Пока оператор не выбран, наполняем a
+              a += key;
+              display.textContent = a;
+              console.log("a:", a);
+            } else {
+              // Если оператор выбран, наполняем b
+              b += key;
+              display.textContent = b;
+              console.log("b:", b);
+            }
+            return; // Выходим после обработки цифры
+          }
+    
+          // Если нажата кнопка оператора
+          if (action.includes(key)) {
+            // Если уже есть число a, можно выбрать оператор
+            if (a !== "") {
+              sign = key;
+              display.textContent = sign;
+              console.log("Оператор выбран:", sign);
+            } else {
+              console.log("Сначала введите число.");
+            }
+            return;
+          }
+    
+          // Если нажата кнопка "="
+          if (key === "=") {
+            console.log("Начинаем вычисление:", a, sign, b);
+            let result;
+            switch (sign) {
+              case "+":
+                result = parseFloat(a) + parseFloat(b);
+                break;
+              case "-":
+                result = parseFloat(a) - parseFloat(b);
+                break;
+              case "×":
+                result = parseFloat(a) * parseFloat(b);
+                break;
+              case "÷":
+                result = parseFloat(a) / parseFloat(b);
+                break;
+              // Можно добавить обработку остальных операторов, если нужно
+              default:
+                console.log("Оператор не распознан:", sign);
+                return;
+            }
+            display.textContent = result;
+            console.log("Результат вычисления:", result);
+            // Обновляем a, чтобы можно было продолжать вычисления
+            a = result.toString();
+            b = "";
+            sign = "";
+            finish = true;
+            return;
+          }
+        });
+      });
+    </script>
+    
+  </body>
+</html>
