@@ -59,6 +59,8 @@ body {
   background-color: rgb(31, 36, 35);
   box-shadow: inset 0 0 5px #02430f, inset 0 0 10px #05f7bb,
     inset 0 0 20px #b2e5f6;
+    /* box-shadow: inset 0px 0px  5px #fa0101b0, inset 0px 0px 10px #ea3909ea,
+    inset 0 0 30px #efa031,inset 0 0 35px #fbb758; */
 
   background: linear-gradient(
     to right,
@@ -119,8 +121,11 @@ body {
 .final-num {
   width: 82%;
   color: #10ffb7eb;
+  /* color: #c03519eb; */
   text-shadow: 0 0 2px #0c93c4, 0 0 3px #00ff00, 0 0 4px #5da7fb,
     0 0 5px #00ff00, 0 0 80px #c0f7f1;
+    /* text-shadow: 0 0 2px #ff2525eb, 0 0 3px #ff7f2fd2, 0 0 6px #fbb95d,
+    0 0 10px #f3d13d, 0 0 80px #f8f55f; */
   text-align: end;
   font-size: 40px;
   letter-spacing: 0.2em;
@@ -197,19 +202,19 @@ body {
   background: linear-gradient(
     to right,
     #000000,
-    /* глубокий чёрный слева */ #1a1a1a 25%,
-    /* тёмно-серый для создания глубины */ rgb(251, 229, 156) 30%,
+     #1a1a1a 25%,
+     rgb(251, 229, 156) 30%,
     rgb(251, 229, 156) 32%,
-    /* первый блик */ #1a1a1a 35%,
+     #1a1a1a 35%,
     #1a1a1a 45%,
     rgb(251, 229, 156) 50%,
     rgb(251, 229, 156) 52%,
-    /* второй блик */ #1a1a1a 55%,
+    #1a1a1a 55%,
     #1a1a1a 65%,
     rgb(251, 229, 156) 70%,
     rgb(251, 229, 156) 72%,
-    /* третий блик */ #1a1a1a 75%,
-    #000000 100% /* глубокий чёрный справа */
+     #1a1a1a 75%,
+    #000000 100% 
   );
   transition: transform 0.2s;
 }
@@ -244,7 +249,7 @@ input[type="checkbox"]:checked + .swich-btn::after {
   background: linear-gradient(to bottom, #4e4d4d, #3d3c3c);
   box-shadow: 0px 0px 15px rgb(0, 0, 0);
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   border: none;
   cursor: pointer;
   transition: transform 0.5s ease;

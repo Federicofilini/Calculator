@@ -39,7 +39,7 @@
         <span class="line line-one"></span>
         <span class="line line-two"></span><span class="line line-three"></span
         ><span class="line line-four"></span>
-        <div class="calc-display">
+        <div  class="calc-display">
           <span class="final-num" id="display">0</span>
           <div class="calc-display_cover"></div>
         </div>
@@ -135,7 +135,7 @@
             <button type="button" class="btn btn-clean">
               <span class="btn-clean-span calcBtn" id="clearDisplay">C</span>
             </button>
-            <button type="button" class="btn"><span>CK</span></button>
+            <button type="button" class="btn "><span id="cleanLastSign">CK</span></button>
             <button type="button" class="btn">
               <span class="calcBtn">-</span>
             </button>
@@ -169,109 +169,203 @@
     </script>
     <script>
       let swichBtnTwo = document.getElementById("swich-btn-two");
+      let calcDisplayWriper = document.getElementsByClassName("calc-display") [0];
       swichBtnTwo.addEventListener("change", () => {
         if (swichBtnTwo.checked) {
-          calcDisplay.style.fontSize = "30px";
+          
+          calcDisplay.style.color = "#c03519eb";
+          calcDisplay.style.textShadow = "0 0 2px #ff2525eb, 0 0 3px #ff7f2fd2, 0 0 6px #fbb95d, 0 0 10px #f3d13d, 0 0 80px #f8f55f";
+          calcDisplayWriper.style.boxShadow = "inset 0px 0px  5px #fa0101b0, inset 0px 0px 10px #ea3909ea,inset 0 0 30px #efa031";
         } else {
-          calcDisplay.style.fontSize = "40px";
+          
+          calcDisplay.style.color = "#10ffb7eb";
+          calcDisplay.style.textShadow = "0 0 2px #0c93c4, 0 0 3px #00ff00, 0 0 4px #5da7fb, 0 0 5px #00ff00, 0 0 80px #c0f7f1";
+          calcDisplayWriper.style.boxShadow = "inset 0 0 5px #02430f, inset 0 0 10px #05f7bb,inset 0 0 20px #b2e5f6"; 
+    
+    
+
         }
       });
     </script>
-    <script>
-      
-      var a = "";
-      var b = "";
-      var sign = "";
-      var finish = false;
     
-      
-      const digit = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ","];
-      const action = ["-", "+", "÷", "×", "%", "√"];
     
-      
-      const display = document.getElementById("display");
-    
-      // Функция очистки (кнопка "C")
-      function clearAll() {
-        a = "";
-        b = "";
-        sign = "";
-        finish = false;
-        display.textContent = 0;
-        console.log("Очистка: a =", a, "b =", b, "sign =", sign);
+   <script>
+  // Глобальные переменные калькулятора
+  var a = "";
+  var b = "";
+  var sign = "";
+  var finish = false;
+
+  // Массивы допустимых символов
+  const digit = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ","];
+  // Добавляем "√" как один из операторов (у него унарная логика)
+  const action = ["-", "+", "÷", "×", "%", "√"];
+  
+  // Элемент дисплея
+  const display = document.getElementById("display");
+
+  // Функция очистки (кнопка "C")
+  function clearAll() {
+    a = "";
+    b = "";
+    sign = "";
+    finish = false;
+    display.textContent = 0;
+    console.log("Очистка: a =", a, "b =", b, "sign =", sign);
+  }
+  document.getElementById("clearDisplay").onclick = clearAll;
+
+  // Вспомогательная функция: преобразование строки с запятой в число
+  function parseNumber(str) {
+    return parseFloat(str.replace(",", "."));
+  }
+
+  // Вспомогательная функция: форматирование числа, заменяя точку на запятую
+  function formatNumber(num) {
+    let str = num.toString();
+    return str.includes(".") ? str.replace(".", ",") : str;
+  }
+
+  document.querySelectorAll(".calcBtn").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const key = event.target.textContent;
+      console.log("Нажата кнопка:", key);
+
+      // Если нажата цифра (или запятая)
+      if (digit.includes(key)) {
+        if (sign === "") {
+          a += key;
+          display.textContent = a;
+          console.log("a:", a);
+        } else {
+          b += key;
+          display.textContent = b;
+          console.log("b:", b);
+        }
+        return; // Выходим после обработки цифры
       }
-      // Привязываем кнопку очистки (предполагается, что у неё id="clearDisplay")
-      document.getElementById("clearDisplay").onclick = clearAll;
-    
-      // Обработчик кликов для всех элементов с классом "calcBtn"
-      document.querySelectorAll(".calcBtn").forEach((button) => {
-        button.addEventListener("click", (event) => {
-          const key = event.target.textContent;
-          console.log("Нажата кнопка:", key);
-    
-          // Если нажата цифра (или запятая)
-          if (digit.includes(key)) {
-            if (sign === "") {
-              // Пока оператор не выбран, наполняем a
-              a += key;
-              display.textContent = a;
-              console.log("a:", a);
-            } else {
-              // Если оператор выбран, наполняем b
-              b += key;
-              display.textContent = b;
-              console.log("b:", b);
-            }
-            return; // Выходим после обработки цифры
+
+      // Если нажата кнопка оператора
+      if (action.includes(key)) {
+        // Если оператор "√" нажат, сразу устанавливаем его (как унарный оператор)
+        if (key === "√") {
+          if (a !== "") {
+            sign = key;
+            display.textContent = sign;
+            console.log("Оператор выбран:", sign);
+          } else {
+            console.log("Сначала введите число.");
           }
-    
-          // Если нажата кнопка оператора
-          if (action.includes(key)) {
-            // Если уже есть число a, можно выбрать оператор
-            if (a !== "") {
-              sign = key;
-              display.textContent = sign;
-              console.log("Оператор выбран:", sign);
-            } else {
-              console.log("Сначала введите число.");
-            }
-            return;
+          return;
+        } else {
+          if (a !== "") {
+            sign = key;
+            display.textContent = sign;
+            console.log("Оператор выбран:", sign);
+          } else {
+            console.log("Сначала введите число.");
           }
+          return;
+        }
+      }
+
+      // Если нажата кнопка "="
+      if (key === "=") {
+  console.log("Начинаем вычисление:", a, sign, b);
+  let result;
+  if (sign === "√") {
+    // Унарная операция: квадратный корень из a
+    let numA = parseNumber(a);
+    result = Math.sqrt(numA);
+  } else if (sign === "%") {
+    // Если b введено, считаем процент от a: a * b / 100
+    // Если b пустое, считаем a/100
+    if (b !== "") {
+      let numA = parseNumber(a);
+      let numB = parseNumber(b);
+      result = numA * numB / 100;
+    } else {
+      let numA = parseNumber(a);
+      result = numA / 100;
+    }
+  } else {
+    // Обработка бинарных операций: +, -, ×, ÷
+    let numA = parseNumber(a);
+    let numB = parseNumber(b);
+    switch (sign) {
+      case "+":
+        result = numA + numB;
+        break;
+      case "-":
+        result = numA - numB;
+        break;
+      case "×":
+        result = numA * numB;
+        break;
+      case "÷":
+        result = numA / numB;
+        break;
+      default:
+        console.log("Оператор не распознан:", sign);
+        return;
+    }
+  }
+  display.textContent = formatNumber(result);
+  console.log("Результат вычисления:", result);
+  // Обновляем переменные для продолжения вычислений
+  a = result.toString();
+  b = "";
+  sign = "";
+  finish = true;
+  return;
+      }
+    });
+  });
+</script>
+
+  <script>
+    // Предполагается, что глобальные переменные a, b, sign и display уже объявлены в вашем коде:
+    // var a = "";
+    // var b = "";
+    // var sign = "";
+    // const display = document.getElementById("display");
     
-          // Если нажата кнопка "="
-          if (key === "=") {
-            console.log("Начинаем вычисление:", a, sign, b);
-            let result;
-            switch (sign) {
-              case "+":
-                result = parseFloat(a) + parseFloat(b);
-                break;
-              case "-":
-                result = parseFloat(a) - parseFloat(b);
-                break;
-              case "×":
-                result = parseFloat(a) * parseFloat(b);
-                break;
-              case "÷":
-                result = parseFloat(a) / parseFloat(b);
-                break;
-              // Можно добавить обработку остальных операторов, если нужно
-              default:
-                console.log("Оператор не распознан:", sign);
-                return;
-            }
-            display.textContent = result;
-            console.log("Результат вычисления:", result);
-            // Обновляем a, чтобы можно было продолжать вычисления
-            a = result.toString();
-            b = "";
-            sign = "";
-            finish = true;
-            return;
-          }
-        });
-      });
-    </script>
+    // Функция, которая удаляет последний символ из строки
+    function removeLastChar(str) {
+      return str.slice(0, -1);
+    }
+  
+    // Назначаем обработчик события на кнопку "CK" (очистка последнего символа)
+    document.getElementById("cleanLastSign").addEventListener("click", () => {
+      console.log("Нажата кнопка CK (удаление последнего символа).");
+      
+      // Если оператор (sign) ещё не выбран, работаем с первым операндом (a)
+      if (sign === "") {
+        // Удаляем последний символ из a
+        a = removeLastChar(a);
+        // Обновляем дисплей. Если a стала пустой, показываем 0.
+        display.textContent = a || "0";
+        console.log("Обновлено a:", a);
+      } else {
+        // Если оператор выбран, значит, вводится второй операнд (b)
+        if (b !== "") {
+          // Если b не пустая, удаляем последний символ из b
+          b = removeLastChar(b);
+          // Обновляем дисплей – показываем b, если b не пустая, иначе показываем выбранный оператор
+          display.textContent = b || sign;
+          console.log("Обновлено b:", b);
+        } else {
+          // Если b пустая, но оператор выбран, значит, пользователь хочет удалить оператор
+          sign = "";
+          // Возвращаем отображение первого операнда
+          display.textContent = a || "0";
+          console.log("Удалён оператор. Значение a:", a);
+        }
+      }
+    });
+  </script>
+  
+  
     
   </body>
 </html>
