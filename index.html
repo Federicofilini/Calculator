@@ -364,8 +364,31 @@
       }
     });
   </script>
+  <script>
+    // Создаем объект аудио
+    let clickSound = new Audio("./sound/clicktwo.mp3");
   
+    document.querySelectorAll(".calcBtn").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        // Воспроизводим звук
+        clickSound.play();
   
-    
+        
+      });
+    });
+  </script>
+ <script>
+  // Создаем объект аудио для клика на кнопке "равно"
+  let clickSoundTwo = new Audio("./sound/clickthree.mp3");
+
+  // Используем querySelectorAll, чтобы получить коллекцию элементов с классом "btn-equals_span"
+  document.querySelectorAll(".btn-equals_span").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      clickSoundTwo.play();
+    });
+  });
+</script>
+  <audio id="clickSound" src="./sound/clicktwo.mp3"></audio>
+  <audio id="clickSound" src="./sound/clickthree.mp3"></audio>
   </body>
 </html>
