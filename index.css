@@ -254,6 +254,7 @@ input[type="checkbox"]:checked + .swich-btn::after {
   cursor: pointer;
   transition: transform 0.5s ease;
   outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .btn-equals {
   width: 124px;
